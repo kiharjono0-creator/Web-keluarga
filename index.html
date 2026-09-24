@@ -1,0 +1,2397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="theme-color" content="#123c2b">
+<title>Keluarga Besar Nene Pala</title>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(180deg,#eef5ef,#dfeee3);
+  color:#173326;
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+
+.app{
+  width:100%;
+  max-width:430px;
+  margin:auto;
+  min-height:100vh;
+  background:#f8fbf8;
+  box-shadow:0 0 30px rgba(0,0,0,.08);
+}
+
+header{
+  background:linear-gradient(145deg,#123c2b,#1d6246);
+  color:white;
+  padding:22px 18px 20px;
+  position:relative;
+  overflow:hidden;
+}
+
+header:after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  right:-70px;
+  top:-80px;
+  background:rgba(255,255,255,.06);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  position:relative;
+  z-index:1;
+}
+
+.logoIcon{
+  width:48px;
+  height:48px;
+  border-radius:15px;
+  background:#d9b75b;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  box-shadow:0 6px 15px rgba(0,0,0,.18);
+}
+
+.logo h1{
+  margin:0;
+  font-size:19px;
+}
+
+.logo p{
+  margin:4px 0 0;
+  font-size:11px;
+  opacity:.85;
+}
+
+.status{
+  margin-top:14px;
+  display:inline-block;
+  padding:7px 11px;
+  border-radius:20px;
+  background:rgba(255,255,255,.12);
+  font-size:11px;
+  position:relative;
+  z-index:1;
+}
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:20;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  background:white;
+  border-bottom:1px solid #dfe8e1;
+  box-shadow:0 3px 12px rgba(0,0,0,.06);
+}
+
+nav button{
+  border:0;
+  background:white;
+  color:#587066;
+  padding:11px 2px;
+  font-size:10px;
+}
+
+nav button.active{
+  color:#14583c;
+  font-weight:bold;
+  border-bottom:3px solid #d0aa48;
+}
+
+main{padding:15px}
+
+.page{display:none}
+.page.active{display:block}
+
+.card{
+  background:white;
+  border:1px solid #e1ebe3;
+  border-radius:18px;
+  padding:15px;
+  margin-bottom:13px;
+  box-shadow:0 5px 18px rgba(25,65,45,.06);
+}
+
+.hero{
+  background:linear-gradient(145deg,#174b35,#286b4d);
+  color:white;
+  border-radius:21px;
+  padding:22px 18px;
+  margin-bottom:14px;
+  box-shadow:0 10px 25px rgba(20,70,45,.15);
+}
+
+.hero h2{margin:0 0 7px;font-size:23px}
+.hero p{margin:0;line-height:1.55;font-size:13px;opacity:.9}
+
+h2,h3{margin-top:0}
+h2{font-size:19px}
+h3{font-size:15px}
+
+.muted{
+  color:#718178;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.stat{
+  background:#f1f7f2;
+  border-radius:15px;
+  padding:13px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:20px;
+  color:#15563b;
+}
+
+.stat span{
+  font-size:11px;
+  color:#718178;
+}
+
+.btn{
+  border:0;
+  border-radius:12px;
+  padding:11px 14px;
+  background:#18583d;
+  color:white;
+  font-weight:bold;
+  font-size:12px;
+  margin:3px 0;
+}
+
+.btn.gold{background:#bd9640}
+.btn.red{background:#a84545}
+.btn.light{
+  background:#edf4ef;
+  color:#24543f;
+}
+.btn.full{width:100%}
+
+input,textarea,select{
+  width:100%;
+  border:1px solid #d6e2d9;
+  border-radius:11px;
+  padding:11px;
+  outline:none;
+  background:#fbfdfb;
+  color:#203c2e;
+  margin:5px 0 10px;
+}
+
+textarea{min-height:90px;resize:vertical}
+
+label{
+  display:block;
+  font-size:11px;
+  font-weight:bold;
+  color:#4c6257;
+  margin-top:7px;
+}
+
+.notice{
+  background:#fff8e8;
+  border:1px solid #ecdcae;
+  color:#765d1d;
+  border-radius:13px;
+  padding:11px;
+  font-size:12px;
+  line-height:1.5;
+}
+
+/* KAS */
+.kasHeader{
+  background:linear-gradient(145deg,#123c2b,#225f43);
+  color:white;
+  border-radius:20px;
+  padding:19px;
+  margin-bottom:14px;
+}
+
+.kasHeader h2{
+  margin-bottom:5px;
+}
+
+.kasBalance{
+  font-size:28px;
+  font-weight:bold;
+  margin:10px 0;
+}
+
+.kasGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+
+.kasMini{
+  background:rgba(255,255,255,.11);
+  border-radius:13px;
+  padding:11px;
+}
+
+.kasMini small{
+  display:block;
+  opacity:.75;
+  font-size:10px;
+}
+
+.kasMini strong{
+  font-size:14px;
+}
+
+.kasCard{
+  background:white;
+  border:1px solid #e0e9e2;
+  border-radius:19px;
+  padding:15px;
+  margin-bottom:12px;
+  box-shadow:0 5px 17px rgba(30,70,48,.06);
+}
+
+.kasCardTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.kasIcon{
+  width:43px;
+  height:43px;
+  border-radius:14px;
+  background:#edf5ef;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+}
+
+.kasName{
+  flex:1;
+}
+
+.kasName h3{
+  margin:0;
+  font-size:15px;
+}
+
+.kasName small{
+  color:#78887e;
+}
+
+.balance{
+  color:#15583c;
+  font-weight:bold;
+  font-size:15px;
+}
+
+.kasSummary{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-top:13px;
+}
+
+.sumBox{
+  background:#f4f8f5;
+  padding:9px 5px;
+  border-radius:11px;
+  text-align:center;
+}
+
+.sumBox small{
+  display:block;
+  color:#7a897f;
+  font-size:9px;
+}
+
+.sumBox strong{
+  display:block;
+  font-size:11px;
+  margin-top:3px;
+}
+
+.green{color:#18704b!important}
+.redText{color:#a43e3e!important}
+
+.transaction{
+  border:1px solid #e4ebe5;
+  border-radius:13px;
+  padding:11px;
+  margin-top:8px;
+  background:#fcfefc;
+}
+
+.transTop{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.transName{
+  font-weight:bold;
+  font-size:12px;
+}
+
+.transDate{
+  color:#88948d;
+  font-size:10px;
+}
+
+.transDesc{
+  color:#65756b;
+  font-size:11px;
+  margin:4px 0;
+}
+
+.transAmount{
+  font-weight:bold;
+  font-size:13px;
+}
+
+.transActions{
+  display:flex;
+  gap:5px;
+  margin-top:7px;
+}
+
+.transActions button{
+  border:0;
+  padding:6px 9px;
+  border-radius:8px;
+  font-size:10px;
+}
+
+.income{
+  background:#e9f7ef;
+  color:#147146;
+}
+
+.expense{
+  background:#faeded;
+  color:#9d3c3c;
+}
+
+.empty{
+  padding:16px;
+  text-align:center;
+  color:#89968e;
+  font-size:12px;
+}
+
+.lock{
+  text-align:center;
+  padding:25px 10px;
+}
+
+.lockIcon{
+  font-size:45px;
+  margin-bottom:10px;
+}
+
+/* SILSILAH */
+.tree{
+  overflow-x:auto;
+  padding-bottom:8px;
+}
+
+.treeRoot{
+  min-width:600px;
+  text-align:center;
+}
+
+.rootBox{
+  display:inline-block;
+  padding:12px 18px;
+  border-radius:15px;
+  background:#d9b75b;
+  color:#3e3010;
+  font-weight:bold;
+  box-shadow:0 5px 15px rgba(80,60,10,.14);
+}
+
+.children{
+  display:grid;
+  grid-template-columns:repeat(4,145px);
+  gap:10px;
+  margin-top:25px;
+}
+
+.member{
+  background:white;
+  border:1px solid #dfe9e1;
+  border-radius:13px;
+  padding:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+
+.member strong{
+  display:block;
+  font-size:11px;
+}
+
+.member small{
+  color:#78877e;
+  font-size:9px;
+}
+
+.searchRow{
+  display:flex;
+  gap:7px;
+}
+
+.searchRow input{margin:0}
+
+.badge{
+  display:inline-block;
+  padding:5px 8px;
+  background:#edf5ef;
+  color:#226044;
+  border-radius:10px;
+  font-size:9px;
+}
+
+/* MODAL */
+.modalWrap{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.48);
+  z-index:100;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding:12px;
+}
+
+.modal{
+  width:100%;
+  max-width:430px;
+  max-height:90vh;
+  overflow:auto;
+  background:white;
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 -10px 35px rgba(0,0,0,.2);
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:20px;
+  transform:translateX(-50%);
+  z-index:200;
+  background:#173c2c;
+  color:white;
+  padding:11px 16px;
+  border-radius:12px;
+  font-size:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,.2);
+  display:none;
+  max-width:90%;
+  text-align:center;
+}
+
+footer{
+  text-align:center;
+  padding:20px 10px 30px;
+  color:#849188;
+  font-size:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+  <div class="logo">
+    <div class="logoIcon">🌳</div>
+    <div>
+      <h1>KELUARGA BESAR NENE PALA</h1>
+      <p>Bersatu Dalam Kasih Keluarga</p>
+    </div>
+  </div>
+  <div id="status" class="status">🟡 Menghubungkan...</div>
+</header>
+
+<nav>
+  <button id="nav-home" class="active" onclick="showPage('home')">🏠<br>HOME</button>
+  <button id="nav-silsilah" onclick="showPage('silsilah')">🌳<br>SILSILAH</button>
+  <button id="nav-jadwal" onclick="showPage('jadwal')">📅<br>JADWAL</button>
+  <button id="nav-kas" onclick="showPage('kas')">💰<br>KAS</button>
+  <button id="nav-admin" onclick="showPage('admin')">🔐<br>ADMIN</button>
+</nav>
+
+<main>
+
+<!-- HOME -->
+<section id="page-home" class="page active">
+
+  <div class="hero">
+    <h2>🌿 Selamat Datang</h2>
+    <p>
+      Website digital Keluarga Besar Nene Pala sebagai tempat
+      menyimpan informasi keluarga, silsilah, kegiatan dan kas keluarga.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>📢 Info Keluarga</h2>
+    <div id="homeInfo" class="muted"></div>
+  </div>
+
+  <div class="card">
+    <h2>💌 Pesan Keluarga</h2>
+    <div id="homeMessages"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="stat">
+      <strong id="statKK">120</strong>
+      <span>KK</span>
+    </div>
+    <div class="stat">
+      <strong id="statMembers">450</strong>
+      <span>Anggota</span>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:13px">
+    <h2>📸 Galeri Keluarga</h2>
+    <div id="gallery" class="grid2"></div>
+  </div>
+
+  <div class="card">
+    <h2>📞 Kontak Keluarga</h2>
+    <div id="contacts" class="muted"></div>
+  </div>
+
+</section>
+
+<!-- SILSILAH -->
+<section id="page-silsilah" class="page">
+
+  <div class="card">
+    <h2>🌳 Silsilah Keluarga</h2>
+    <p class="muted">
+      Telusuri hubungan keluarga dari Nene Pala hingga generasi berikutnya.
+    </p>
+
+    <div class="searchRow">
+      <input id="treeSearch" placeholder="🔎 Cari nama anggota..." oninput="renderTree()">
+      <button class="btn" onclick="clearTreeSearch()">Reset</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="tree">
+      <div class="treeRoot">
+        <div class="rootBox">🌳 NENE PALA</div>
+        <div id="treeChildren" class="children"></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- JADWAL -->
+<section id="page-jadwal" class="page">
+
+  <div class="card">
+    <h2>📅 Jadwal Keluarga</h2>
+    <div id="scheduleList"></div>
+  </div>
+
+</section>
+
+<!-- KAS -->
+<section id="page-kas" class="page">
+
+  <div id="kasPage"></div>
+
+</section>
+
+<!-- ADMIN -->
+<section id="page-admin" class="page">
+
+  <div id="adminContent"></div>
+
+</section>
+
+</main>
+
+<footer>
+  Keluarga Besar Nene Pala • Database Cloud Firestore
+</footer>
+
+</div>
+
+<div id="modalRoot"></div>
+<div id="toast" class="toast"></div>
+
+<!-- Firebase -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC3VsIAd9stjyh0GsmYk8XNPpqKqw2sxDk",
+  authDomain: "projek-6886a.firebaseapp.com",
+  projectId: "projek-6886a",
+  storageBucket: "projek-6886a.firebasestorage.app",
+  messagingSenderId: "979573967792",
+  appId: "1:979573967792:web:a2502ebe81ab40eb49e475"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const dataRef = doc(
+  db,
+  "website",
+  "keluarga_nene_pala"
+);
+
+const CACHE_KEY = "nenePalaDataV2";
+
+let online = false;
+let admin = false;
+let kasLogin = false;
+
+const defaultData = {
+
+  profile:{
+    church:"KELUARGA BESAR NENE PALA",
+    slogan:"Bersatu Dalam Kasih Keluarga",
+    address:"Manggi, Mamasa, Sulawesi Barat",
+    history:"Sejarah keluarga belum diisi.",
+    pastor:"",
+    leader:"",
+    secretary:"",
+    treasurer:"",
+    kk:120,
+    members:450
+  },
+
+  info:"Selamat datang di Website Keluarga Besar Nene Pala.",
+
+  messages:[
+    "Mari tetap menjaga persatuan dan kasih dalam keluarga.",
+    "Bersama membangun keluarga yang saling mendukung.",
+    "Kiranya hubungan keluarga tetap erat dari generasi ke generasi."
+  ],
+
+  gallery:["","","","","",""],
+
+  contacts:{
+    whatsapp:"",
+    facebook:"",
+    maps:"",
+    bank:"",
+    account:"",
+    owner:""
+  },
+
+  schedules:[],
+
+  members:[
+    {
+      id:"nene-pala",
+      name:"Nene Pala",
+      parent:null,
+      generation:0
+    }
+  ],
+
+  kas:[
+    {
+      id:"keluarga",
+      name:"Kas Keluarga",
+      icon:"💰",
+      transactions:[]
+    },
+    {
+      id:"pembangunan",
+      name:"Kas Pembangunan",
+      icon:"🏠",
+      transactions:[]
+    },
+    {
+      id:"sosial",
+      name:"Kas Sosial",
+      icon:"🤝",
+      transactions:[]
+    },
+    {
+      id:"lainnya",
+      name:"Kas Lainnya",
+      icon:"📦",
+      transactions:[]
+    }
+  ]
+
+};
+
+function deepCopy(obj){
+  return JSON.parse(JSON.stringify(obj));
+}
+
+function normalize(raw){
+
+  const d = raw || deepCopy(defaultData);
+
+  d.profile = d.profile || deepCopy(defaultData.profile);
+  d.messages = Array.isArray(d.messages) ? d.messages : [];
+  d.gallery = Array.isArray(d.gallery) ? d.gallery : ["","","","","",""];
+  d.contacts = d.contacts || deepCopy(defaultData.contacts);
+  d.schedules = Array.isArray(d.schedules) ? d.schedules : [];
+  d.members = Array.isArray(d.members) ? d.members : deepCopy(defaultData.members);
+
+  if(!Array.isArray(d.kas) || d.kas.length!==4){
+    d.kas = deepCopy(defaultData.kas);
+  }
+
+  d.kas = d.kas.map((k,i)=>({
+    id:k.id || defaultData.kas[i].id,
+    name:k.name || defaultData.kas[i].name,
+    icon:k.icon || defaultData.kas[i].icon,
+    transactions:Array.isArray(k.transactions)?k.transactions:[]
+  }));
+
+  return d;
+}
+
+function loadCache(){
+
+  try{
+    const raw=localStorage.getItem(CACHE_KEY);
+    return raw ? normalize(JSON.parse(raw)) : null;
+  }catch(e){
+    return null;
+  }
+
+}
+
+let data = normalize(loadCache());
+
+function saveCache(){
+
+  try{
+    localStorage.setItem(
+      CACHE_KEY,
+      JSON.stringify(data)
+    );
+  }catch(e){}
+
+}
+
+function setStatus(text){
+
+  document.getElementById("status").textContent=text;
+
+}
+
+async function saveData(){
+
+  data=normalize(data);
+  saveCache();
+
+  try{
+
+    await setDoc(
+      dataRef,
+      data,
+      {merge:false}
+    );
+
+    online=true;
+    setStatus("🟢 Online & Realtime");
+
+  }catch(err){
+
+    console.error(err);
+    setStatus("🔴 Offline — cek Firestore Rules");
+
+    toast("❌ Gagal menyimpan ke Firestore");
+
+  }
+
+}
+
+function toast(message){
+
+  const el=document.getElementById("toast");
+
+  el.textContent=message;
+  el.style.display="block";
+
+  clearTimeout(window.__toastTimer);
+
+  window.__toastTimer=setTimeout(()=>{
+    el.style.display="none";
+  },2500);
+
+}
+
+function openModal(html){
+
+  document.getElementById("modalRoot").innerHTML=`
+    <div class="modalWrap" onclick="closeModal(event)">
+      <div class="modal" onclick="event.stopPropagation()">
+        ${html}
+      </div>
+    </div>
+  `;
+
+}
+
+window.closeModal=(event)=>{
+
+  if(event && event.target!==event.currentTarget)return;
+
+  document.getElementById("modalRoot").innerHTML="";
+
+};
+
+window.showPage=(page)=>{
+
+  document.querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
+
+  document.getElementById("page-"+page)
+    .classList.add("active");
+
+  document.querySelectorAll("nav button")
+    .forEach(b=>b.classList.remove("active"));
+
+  const nav=document.getElementById("nav-"+page);
+
+  if(nav)nav.classList.add("active");
+
+  window.scrollTo({top:0,behavior:"smooth"});
+
+  if(page==="kas")renderKas();
+  if(page==="admin")renderAdmin();
+  if(page==="silsilah")renderTree();
+  if(page==="jadwal")renderSchedules();
+
+};
+
+/* HOME */
+
+function renderHome(){
+
+  document.getElementById("homeInfo").textContent=
+    data.info || "Belum ada informasi.";
+
+  document.getElementById("statKK").textContent=
+    data.profile.kk || 0;
+
+  document.getElementById("statMembers").textContent=
+    data.profile.members || 0;
+
+  document.getElementById("contacts").innerHTML=`
+    <p>📱 WhatsApp: ${escapeHTML(data.contacts.whatsapp||"-")}</p>
+    <p>📘 Facebook: ${escapeHTML(data.contacts.facebook||"-")}</p>
+    <p>📍 Maps: ${escapeHTML(data.contacts.maps||"-")}</p>
+    <hr>
+    <p>🏦 Bank: ${escapeHTML(data.contacts.bank||"-")}</p>
+    <p>💳 Rekening: ${escapeHTML(data.contacts.account||"-")}</p>
+    <p>👤 Atas Nama: ${escapeHTML(data.contacts.owner||"-")}</p>
+  `;
+
+  document.getElementById("homeMessages").innerHTML=
+    data.messages.length
+    ? data.messages.map(m=>`
+      <div class="notice" style="margin-bottom:7px">
+        💌 ${escapeHTML(m)}
+      </div>
+    `).join("")
+    : `<div class="empty">Belum ada pesan.</div>`;
+
+  document.getElementById("gallery").innerHTML=
+    data.gallery.map((url,i)=>{
+
+      if(!url){
+        return `
+          <div class="stat" style="min-height:110px">
+            📷<br>
+            <small>Foto ${i+1}</small>
+          </div>
+        `;
+      }
+
+      return `
+        <img
+          src="${escapeAttr(url)}"
+          style="width:100%;height:120px;object-fit:cover;border-radius:14px"
+          onerror="this.style.display='none'"
+        >
+      `;
+
+    }).join("");
+
+}
+
+/* SILSILAH */
+
+function renderTree(){
+
+  const search=(document.getElementById("treeSearch")?.value||"")
+    .toLowerCase()
+    .trim();
+
+  const first=data.members.filter(m=>
+    m.generation===1 &&
+    (!search || m.name.toLowerCase().includes(search))
+  );
+
+  const root=data.members.find(m=>m.generation===0);
+
+  let html="";
+
+  if(root && (!search || root.name.toLowerCase().includes(search))){
+    html+=`
+      <div class="member">
+        <strong>🌳 ${escapeHTML(root.name)}</strong>
+        <small>Generasi 0</small>
+      </div>
+    `;
+  }
+
+  first.forEach(member=>{
+
+    const descendants=data.members.filter(m=>
+      m.parent===member.id &&
+      (!search || m.name.toLowerCase().includes(search))
+    );
+
+    html+=`
+      <div class="member">
+        <strong>${escapeHTML(member.name)}</strong>
+        <small>Generasi 1</small>
+
+        ${
+          descendants.length
+          ? `<div style="margin-top:7px">
+              ${descendants.map(c=>`
+                <div class="badge" style="margin:2px">
+                  ${escapeHTML(c.name)}
+                </div>
+              `).join("")}
+            </div>`
+          : ""
+        }
+
+      </div>
+    `;
+
+  });
+
+  if(!html){
+    html=`
+      <div class="member">
+        <strong>Tidak ditemukan</strong>
+      </div>
+    `;
+  }
+
+  document.getElementById("treeChildren").innerHTML=html;
+
+}
+
+window.clearTreeSearch=()=>{
+  const input=document.getElementById("treeSearch");
+  if(input)input.value="";
+  renderTree();
+};
+
+/* JADWAL */
+
+function renderSchedules(){
+
+  const box=document.getElementById("scheduleList");
+
+  if(!data.schedules.length){
+    box.innerHTML=`
+      <div class="empty">
+        Belum ada jadwal keluarga.
+      </div>
+    `;
+    return;
+  }
+
+  box.innerHTML=data.schedules.map(s=>`
+    <div class="transaction">
+      <div class="transTop">
+        <div>
+          <div class="transName">${escapeHTML(s.day||"")}</div>
+          <div class="transDate">${escapeHTML(s.time||"")}</div>
+        </div>
+        <span class="badge">${escapeHTML(s.place||"")}</span>
+      </div>
+      <div class="transDesc">
+        ${escapeHTML(s.notes||"")}
+      </div>
+    </div>
+  `).join("");
+
+}
+
+/* =========================
+   LOGIN KAS
+========================= */
+
+window.kasLoginForm=()=>{
+
+  openModal(`
+    <h2>🔐 Login KAS</h2>
+
+    <p class="muted">
+      Masukkan password untuk membuka pengelolaan kas.
+    </p>
+
+    <label>Password KAS</label>
+
+    <input
+      id="kasPass"
+      type="password"
+      inputmode="numeric"
+      autocomplete="off"
+      placeholder="Masukkan password"
+    >
+
+    <button
+      class="btn full"
+      onclick="doKasLogin()"
+    >
+      🔓 Masuk KAS
+    </button>
+
+    <button
+      class="btn light full"
+      onclick="closeModal()"
+    >
+      Batal
+    </button>
+  `);
+
+  setTimeout(()=>{
+    document.getElementById("kasPass")?.focus();
+  },100);
+
+};
+
+window.doKasLogin=()=>{
+
+  const input=document.getElementById("kasPass");
+
+  if(!input)return;
+
+  const password=input.value.trim();
+
+  if(password==="123456"){
+
+    kasLogin=true;
+
+    closeModal();
+
+    renderKas();
+
+    toast("✅ Login KAS berhasil");
+
+  }else{
+
+    input.value="";
+    input.focus();
+
+    toast("❌ Password KAS salah");
+
+  }
+
+};
+
+window.kasLogout=()=>{
+
+  kasLogin=false;
+
+  renderKas();
+
+  toast("🔒 Logout KAS");
+
+};
+
+/* =========================
+   KAS
+========================= */
+
+function kasTotals(kas){
+
+  let pemasukan=0;
+  let pengeluaran=0;
+
+  kas.transactions.forEach(t=>{
+
+    pemasukan+=Number(t.type==="in"?t.amount:0);
+    pengeluaran+=Number(t.type==="out"?t.amount:0);
+
+  });
+
+  return {
+    pemasukan,
+    pengeluaran,
+    saldo:pemasukan-pengeluaran
+  };
+
+}
+
+function money(value){
+
+  return new Intl.NumberFormat(
+    "id-ID",
+    {
+      style:"currency",
+      currency:"IDR",
+      maximumFractionDigits:0
+    }
+  ).format(Number(value)||0);
+
+}
+
+function renderKas(){
+
+  const box=document.getElementById("kasPage");
+
+  if(!kasLogin){
+
+    box.innerHTML=`
+
+      <div class="card lock">
+
+        <div class="lockIcon">🔐</div>
+
+        <h2>Kas Keluarga</h2>
+
+        <p class="muted">
+          Pengelolaan pemasukan, pengeluaran dan
+          riwayat kas hanya dapat dibuka setelah login KAS.
+        </p>
+
+        <button
+          class="btn full"
+          onclick="kasLoginForm()"
+        >
+          🔓 LOGIN KAS
+        </button>
+
+      </div>
+
+      <div class="notice">
+        💡 Data kas tersimpan di Firestore dan dapat
+        disinkronkan secara realtime antar perangkat.
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  let totalIn=0;
+  let totalOut=0;
+
+  data.kas.forEach(k=>{
+    const t=kasTotals(k);
+    totalIn+=t.pemasukan;
+    totalOut+=t.pengeluaran;
+  });
+
+  const totalSaldo=totalIn-totalOut;
+
+  box.innerHTML=`
+
+    <div class="kasHeader">
+
+      <h2>💰 KAS KELUARGA BESAR</h2>
+
+      <div class="muted" style="color:white;opacity:.75">
+        Ringkasan seluruh kas
+      </div>
+
+      <div class="kasBalance">
+        ${money(totalSaldo)}
+      </div>
+
+      <div class="kasGrid">
+
+        <div class="kasMini">
+          <small>Total Pemasukan</small>
+          <strong>${money(totalIn)}</strong>
+        </div>
+
+        <div class="kasMini">
+          <small>Total Pengeluaran</small>
+          <strong>${money(totalOut)}</strong>
+        </div>
+
+      </div>
+
+      <button
+        class="btn light full"
+        style="margin-top:12px"
+        onclick="kasLogout()"
+      >
+        🔒 Logout KAS
+      </button>
+
+    </div>
+
+    ${data.kas.map(k=>renderKasCard(k)).join("")}
+
+  `;
+
+}
+
+function renderKasCard(kas){
+
+  const t=kasTotals(kas);
+
+  return `
+
+    <div class="kasCard">
+
+      <div class="kasCardTop">
+
+        <div class="kasIcon">
+          ${escapeHTML(kas.icon)}
+        </div>
+
+        <div class="kasName">
+          <h3>${escapeHTML(kas.name)}</h3>
+          <small>${kas.transactions.length} transaksi</small>
+        </div>
+
+        <div class="balance">
+          ${money(t.saldo)}
+        </div>
+
+      </div>
+
+      <div class="kasSummary">
+
+        <div class="sumBox">
+          <small>PEMASUKAN</small>
+          <strong class="green">${money(t.pemasukan)}</strong>
+        </div>
+
+        <div class="sumBox">
+          <small>PENGELUARAN</small>
+          <strong class="redText">${money(t.pengeluaran)}</strong>
+        </div>
+
+        <div class="sumBox">
+          <small>SALDO</small>
+          <strong>${money(t.saldo)}</strong>
+        </div>
+
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px">
+
+        <button
+          class="btn"
+          onclick="addTransaction('${kas.id}','in')"
+        >
+          + Pemasukan
+        </button>
+
+        <button
+          class="btn red"
+          onclick="addTransaction('${kas.id}','out')"
+        >
+          − Pengeluaran
+        </button>
+
+      </div>
+
+      <button
+        class="btn light full"
+        onclick="showKasHistory('${kas.id}')"
+      >
+        📋 Lihat Riwayat
+      </button>
+
+      <button
+        class="btn gold full"
+        onclick="saveKas('${kas.id}')"
+      >
+        💾 SAVE KAS
+      </button>
+
+      <button
+        class="btn light full"
+        onclick="printKas('${kas.id}')"
+      >
+        🖨️ Print Laporan
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+window.addTransaction=(kasId,type)=>{
+
+  const kas=data.kas.find(k=>k.id===kasId);
+
+  if(!kas)return;
+
+  const title=
+    type==="in"
+    ? "➕ Tambah Pemasukan"
+    : "➖ Tambah Pengeluaran";
+
+  openModal(`
+
+    <h2>${title}</h2>
+
+    <p class="muted">
+      ${escapeHTML(kas.name)}
+    </p>
+
+    <label>Tanggal</label>
+
+    <input
+      id="trDate"
+      type="date"
+      value="${new Date().toISOString().slice(0,10)}"
+    >
+
+    <label>Nama</label>
+
+    <input
+      id="trName"
+      placeholder="Nama orang"
+    >
+
+    <label>Keterangan</label>
+
+    <input
+      id="trDesc"
+      placeholder="Contoh: Iuran keluarga"
+    >
+
+    <label>Jumlah</label>
+
+    <input
+      id="trAmount"
+      type="number"
+      inputmode="numeric"
+      placeholder="Masukkan jumlah"
+    >
+
+    <button
+      class="btn full"
+      onclick="saveTransaction('${kasId}','${type}')"
+    >
+      💾 Simpan Transaksi
+    </button>
+
+    <button
+      class="btn light full"
+      onclick="closeModal()"
+    >
+      Batal
+    </button>
+
+  `);
+
+};
+
+window.saveTransaction=async(kasId,type)=>{
+
+  const kas=data.kas.find(k=>k.id===kasId);
+
+  if(!kas)return;
+
+  const date=document.getElementById("trDate").value;
+  const name=document.getElementById("trName").value.trim();
+  const desc=document.getElementById("trDesc").value.trim();
+  const amount=Number(document.getElementById("trAmount").value);
+
+  if(!date || !name || !desc || !amount || amount<=0){
+
+    toast("⚠️ Lengkapi data transaksi");
+
+    return;
+
+  }
+
+  kas.transactions.push({
+
+    id:Date.now().toString(),
+    date,
+    name,
+    desc,
+    amount,
+    type
+
+  });
+
+  closeModal();
+
+  renderKas();
+
+  await saveData();
+
+  toast("✅ Transaksi berhasil disimpan");
+
+};
+
+window.showKasHistory=(kasId)=>{
+
+  const kas=data.kas.find(k=>k.id===kasId);
+
+  if(!kas)return;
+
+  const sorted=[...kas.transactions]
+    .sort((a,b)=>b.date.localeCompare(a.date));
+
+  openModal(`
+
+    <h2>📋 ${escapeHTML(kas.name)}</h2>
+
+    ${
+      sorted.length
+      ? sorted.map(t=>`
+
+        <div class="transaction">
+
+          <div class="transTop">
+
+            <div>
+              <div class="transName">
+                ${escapeHTML(t.name)}
+              </div>
+
+              <div class="transDate">
+                ${formatDate(t.date)}
+              </div>
+            </div>
+
+            <div class="transAmount ${
+              t.type==="in"
+              ? "green"
+              : "redText"
+            }">
+              ${t.type==="in"?"+":"−"} ${money(t.amount)}
+            </div>
+
+          </div>
+
+          <div class="transDesc">
+            ${escapeHTML(t.desc)}
+          </div>
+
+          <div class="transActions">
+
+            <button
+              class="income"
+              onclick="editTransaction('${kas.id}','${t.id}')"
+            >
+              ✏️ Edit
+            </button>
+
+            <button
+              class="expense"
+              onclick="deleteTransaction('${kas.id}','${t.id}')"
+            >
+              🗑️ Hapus
+            </button>
+
+          </div>
+
+        </div>
+
+      `).join("")
+      : `<div class="empty">Belum ada transaksi.</div>`
+    }
+
+    <button
+      class="btn light full"
+      style="margin-top:10px"
+      onclick="closeModal()"
+    >
+      Tutup
+    </button>
+
+  `);
+
+};
+
+window.editTransaction=(kasId,id)=>{
+
+  const kas=data.kas.find(k=>k.id===kasId);
+  const t=kas?.transactions.find(x=>x.id===id);
+
+  if(!t)return;
+
+  openModal(`
+
+    <h2>✏️ Edit Transaksi</h2>
+
+    <label>Tanggal</label>
+    <input id="editDate" type="date" value="${escapeAttr(t.date)}">
+
+    <label>Nama</label>
+    <input id="editName" value="${escapeAttr(t.name)}">
+
+    <label>Keterangan</label>
+    <input id="editDesc" value="${escapeAttr(t.desc)}">
+
+    <label>Jumlah</label>
+    <input id="editAmount" type="number" value="${Number(t.amount)}">
+
+    <button
+      class="btn full"
+      onclick="updateTransaction('${kasId}','${id}')"
+    >
+      💾 Simpan Perubahan
+    </button>
+
+    <button
+      class="btn light full"
+      onclick="closeModal()"
+    >
+      Batal
+    </button>
+
+  `);
+
+};
+
+window.updateTransaction=async(kasId,id)=>{
+
+  const kas=data.kas.find(k=>k.id===kasId);
+  const t=kas?.transactions.find(x=>x.id===id);
+
+  if(!t)return;
+
+  const date=document.getElementById("editDate").value;
+  const name=document.getElementById("editName").value.trim();
+  const desc=document.getElementById("editDesc").value.trim();
+  const amount=Number(document.getElementById("editAmount").value);
+
+  if(!date||!name||!desc||!amount){
+
+    toast("⚠️ Data belum lengkap");
+
+    return;
+
+  }
+
+  t.date=date;
+  t.name=name;
+  t.desc=desc;
+  t.amount=amount;
+
+  closeModal();
+
+  renderKas();
+
+  await saveData();
+
+  toast("✅ Transaksi diperbarui");
+
+};
+
+window.deleteTransaction=async(kasId,id)=>{
+
+  if(!confirm("Hapus transaksi ini?"))return;
+
+  const kas=data.kas.find(k=>k.id===kasId);
+
+  if(!kas)return;
+
+  kas.transactions=
+    kas.transactions.filter(t=>t.id!==id);
+
+  closeModal();
+
+  renderKas();
+
+  await saveData();
+
+  toast("🗑️ Transaksi dihapus");
+
+};
+
+window.saveKas=async(kasId)=>{
+
+  await saveData();
+
+  toast("✅ Kas berhasil disimpan.");
+
+};
+
+window.printKas=(kasId)=>{
+
+  const kas=data.kas.find(k=>k.id===kasId);
+
+  if(!kas)return;
+
+  const t=kasTotals(kas);
+
+  const rows=[...kas.transactions]
+    .sort((a,b)=>a.date.localeCompare(b.date))
+    .map((x,i)=>`
+
+      <tr>
+        <td>${i+1}</td>
+        <td>${formatDate(x.date)}</td>
+        <td>${escapeHTML(x.name)}</td>
+        <td>${escapeHTML(x.desc)}</td>
+        <td>${x.type==="in"?money(x.amount):"-"}</td>
+        <td>${x.type==="out"?money(x.amount):"-"}</td>
+      </tr>
+
+    `).join("");
+
+  const win=window.open("","_blank");
+
+  win.document.write(`
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+
+      <meta charset="UTF-8">
+
+      <title>${escapeHTML(kas.name)}</title>
+
+      <style>
+
+        body{
+          font-family:Arial;
+          padding:25px;
+          color:#222;
+        }
+
+        h1{text-align:center}
+
+        .center{text-align:center}
+
+        table{
+          width:100%;
+          border-collapse:collapse;
+          margin-top:20px;
+        }
+
+        th,td{
+          border:1px solid #999;
+          padding:8px;
+          font-size:11px;
+        }
+
+        th{background:#eee}
+
+        .summary{
+          margin-top:20px;
+          width:320px;
+          margin-left:auto;
+        }
+
+        .summary div{
+          display:flex;
+          justify-content:space-between;
+          padding:5px;
+        }
+
+        @media print{
+          button{display:none}
+        }
+
+      </style>
+
+    </head>
+
+    <body>
+
+      <h1>KELUARGA BESAR NENE PALA</h1>
+
+      <div class="center">
+        <h2>${escapeHTML(kas.name)}</h2>
+        <p>Laporan Kas</p>
+      </div>
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Tanggal</th>
+            <th>Nama</th>
+            <th>Keterangan</th>
+            <th>Pemasukan</th>
+            <th>Pengeluaran</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${rows}
+        </tbody>
+
+      </table>
+
+      <div class="summary">
+
+        <div>
+          <strong>Total Pemasukan</strong>
+          <span>${money(t.pemasukan)}</span>
+        </div>
+
+        <div>
+          <strong>Total Pengeluaran</strong>
+          <span>${money(t.pengeluaran)}</span>
+        </div>
+
+        <div>
+          <strong>Saldo</strong>
+          <strong>${money(t.saldo)}</strong>
+        </div>
+
+      </div>
+
+      <br>
+
+      <button onclick="window.print()">
+        Cetak
+      </button>
+
+    </body>
+    </html>
+
+  `);
+
+  win.document.close();
+
+};
+
+/* =========================
+   LOGIN ADMIN
+========================= */
+
+window.adminLoginForm=()=>{
+
+  openModal(`
+
+    <h2>🔐 Login Admin</h2>
+
+    <p class="muted">
+      Masukkan password Admin untuk mengelola website.
+    </p>
+
+    <label>Password Admin</label>
+
+    <input
+      id="adminPass"
+      type="password"
+      inputmode="numeric"
+      autocomplete="off"
+      placeholder="Masukkan password"
+    >
+
+    <button
+      class="btn full"
+      onclick="doAdminLogin()"
+    >
+      🔓 Masuk Admin
+    </button>
+
+    <button
+      class="btn light full"
+      onclick="closeModal()"
+    >
+      Batal
+    </button>
+
+  `);
+
+  setTimeout(()=>{
+    document.getElementById("adminPass")?.focus();
+  },100);
+
+};
+
+window.doAdminLogin=()=>{
+
+  const input=document.getElementById("adminPass");
+
+  if(!input)return;
+
+  const password=input.value.trim();
+
+  if(password==="910502"){
+
+    admin=true;
+
+    closeModal();
+
+    renderAdmin();
+
+    toast("✅ Login Admin berhasil");
+
+  }else{
+
+    input.value="";
+    input.focus();
+
+    toast("❌ Password Admin salah");
+
+  }
+
+};
+
+window.adminLogout=()=>{
+
+  admin=false;
+
+  renderAdmin();
+
+  toast("🔒 Logout Admin");
+
+};
+
+/* =========================
+   ADMIN
+========================= */
+
+function renderAdmin(){
+
+  const box=document.getElementById("adminContent");
+
+  if(!admin){
+
+    box.innerHTML=`
+
+      <div class="card lock">
+
+        <div class="lockIcon">🔐</div>
+
+        <h2>Admin Website</h2>
+
+        <p class="muted">
+          Login Admin untuk mengelola data keluarga,
+          silsilah, jadwal, galeri dan informasi website.
+        </p>
+
+        <button
+          class="btn full"
+          onclick="adminLoginForm()"
+        >
+          🔓 LOGIN ADMIN
+        </button>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  box.innerHTML=`
+
+    <div class="card">
+
+      <div style="display:flex;justify-content:space-between;align-items:center">
+
+        <div>
+          <h2>⚙️ Panel Admin</h2>
+          <p class="muted">
+            Anda sedang login sebagai Admin.
+          </p>
+        </div>
+
+        <span class="badge">ADMIN</span>
+
+      </div>
+
+      <button
+        class="btn red full"
+        onclick="adminLogout()"
+      >
+        🔒 Logout Admin
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h3>🏠 Profil Keluarga</h3>
+
+      <label>Nama</label>
+      <input id="aName" value="${escapeAttr(data.profile.church)}">
+
+      <label>Slogan</label>
+      <input id="aSlogan" value="${escapeAttr(data.profile.slogan)}">
+
+      <label>Alamat</label>
+      <input id="aAddress" value="${escapeAttr(data.profile.address)}">
+
+      <label>Jumlah KK</label>
+      <input id="aKK" type="number" value="${Number(data.profile.kk)||0}">
+
+      <label>Jumlah Anggota</label>
+      <input id="aMembers" type="number" value="${Number(data.profile.members)||0}">
+
+      <button class="btn full" onclick="saveProfileAdmin()">
+        💾 Simpan Profil
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h3>📢 Info Website</h3>
+
+      <textarea id="aInfo">${escapeHTML(data.info||"")}</textarea>
+
+      <button class="btn full" onclick="saveInfoAdmin()">
+        💾 Simpan Info
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h3>💌 Pesan Keluarga</h3>
+
+      <textarea id="aMessages">${escapeHTML(data.messages.join("\\n"))}</textarea>
+
+      <button class="btn full" onclick="saveMessagesAdmin()">
+        💾 Simpan Pesan
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h3>🌳 Tambah Anggota Silsilah</h3>
+
+      <label>Nama</label>
+      <input id="mName" placeholder="Nama anggota">
+
+      <label>Orang Tua</label>
+
+      <select id="mParent">
+
+        <option value="">-- Tidak ada --</option>
+
+        ${data.members.map(m=>`
+          <option value="${escapeAttr(m.id)}">
+            ${escapeHTML(m.name)}
+          </option>
+        `).join("")}
+
+      </select>
+
+      <button class="btn full" onclick="addMemberAdmin()">
+        ➕ Tambah Anggota
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h3>💰 Nama 4 KAS</h3>
+
+      ${data.kas.map((k,i)=>`
+
+        <label>KAS ${i+1}</label>
+
+        <input
+          id="kasName${i}"
+          value="${escapeAttr(k.name)}"
+        >
+
+      `).join("")}
+
+      <button class="btn gold full" onclick="saveKasNames()">
+        💾 Simpan Nama KAS
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h3>📸 Galeri</h3>
+
+      ${data.gallery.map((url,i)=>`
+
+        <label>URL Foto ${i+1}</label>
+
+        <input
+          id="gallery${i}"
+          value="${escapeAttr(url)}"
+          placeholder="https://..."
+        >
+
+      `).join("")}
+
+      <button class="btn full" onclick="saveGalleryAdmin()">
+        💾 Simpan Galeri
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h3>💾 Data Website</h3>
+
+      <button class="btn full" onclick="backupData()">
+        ⬇️ Backup JSON
+      </button>
+
+      <button class="btn light full" onclick="document.getElementById('restoreFile').click()">
+        ⬆️ Restore JSON
+      </button>
+
+      <input
+        id="restoreFile"
+        type="file"
+        accept=".json"
+        style="display:none"
+        onchange="restoreData(event)"
+      >
+
+    </div>
+
+  `;
+
+}
+
+window.saveProfileAdmin=async()=>{
+
+  data.profile.church=
+    document.getElementById("aName").value.trim();
+
+  data.profile.slogan=
+    document.getElementById("aSlogan").value.trim();
+
+  data.profile.address=
+    document.getElementById("aAddress").value.trim();
+
+  data.profile.kk=
+    Number(document.getElementById("aKK").value)||0;
+
+  data.profile.members=
+    Number(document.getElementById("aMembers").value)||0;
+
+  await saveData();
+
+  renderHome();
+
+  toast("✅ Profil berhasil disimpan");
+
+};
+
+window.saveInfoAdmin=async()=>{
+
+  data.info=
+    document.getElementById("aInfo").value.trim();
+
+  await saveData();
+
+  renderHome();
+
+  toast("✅ Info berhasil disimpan");
+
+};
+
+window.saveMessagesAdmin=async()=>{
+
+  data.messages=
+    document.getElementById("aMessages")
+      .value
+      .split("\n")
+      .map(x=>x.trim())
+      .filter(Boolean);
+
+  await saveData();
+
+  renderHome();
+
+  toast("✅ Pesan berhasil disimpan");
+
+};
+
+window.saveGalleryAdmin=async()=>{
+
+  data.gallery=data.gallery.map((_,i)=>
+    document.getElementById("gallery"+i).value.trim()
+  );
+
+  await saveData();
+
+  renderHome();
+
+  toast("✅ Galeri berhasil disimpan");
+
+};
+
+window.saveKasNames=async()=>{
+
+  data.kas.forEach((k,i)=>{
+
+    const input=document.getElementById("kasName"+i);
+
+    if(input && input.value.trim()){
+      k.name=input.value.trim();
+    }
+
+  });
+
+  await saveData();
+
+  renderKas();
+
+  toast("✅ Nama KAS berhasil disimpan");
+
+};
+
+window.addMemberAdmin=async()=>{
+
+  const name=document.getElementById("mName").value.trim();
+  const parent=document.getElementById("mParent").value;
+
+  if(!name){
+
+    toast("⚠️ Masukkan nama anggota");
+
+    return;
+
+  }
+
+  let generation=1;
+
+  if(parent){
+
+    const p=data.members.find(x=>x.id===parent);
+
+    if(p){
+      generation=Number(p.generation||0)+1;
+    }
+
+  }
+
+  data.members.push({
+
+    id:"member-"+Date.now(),
+    name,
+    parent:parent||null,
+    generation
+
+  });
+
+  await saveData();
+
+  renderAdmin();
+  renderTree();
+
+  toast("✅ Anggota berhasil ditambahkan");
+
+};
+
+window.backupData=()=>{
+
+  const blob=new Blob(
+    [JSON.stringify(data,null,2)],
+    {type:"application/json"}
+  );
+
+  const url=URL.createObjectURL(blob);
+
+  const a=document.createElement("a");
+
+  a.href=url;
+  a.download="backup-keluarga-besar-nene-pala.json";
+
+  a.click();
+
+  URL.revokeObjectURL(url);
+
+};
+
+window.restoreData=(event)=>{
+
+  const file=event.target.files[0];
+
+  if(!file)return;
+
+  const reader=new FileReader();
+
+  reader.onload=async()=>{
+
+    try{
+
+      const parsed=JSON.parse(reader.result);
+
+      data=normalize(parsed);
+
+      await saveData();
+
+      renderAll();
+
+      toast("✅ Data berhasil dipulihkan");
+
+    }catch(e){
+
+      toast("❌ File JSON tidak valid");
+
+    }
+
+  };
+
+  reader.readAsText(file);
+
+};
+
+/* HELPERS */
+
+function escapeHTML(value){
+
+  return String(value??"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+function escapeAttr(value){
+
+  return escapeHTML(value);
+
+}
+
+function formatDate(date){
+
+  if(!date)return "-";
+
+  try{
+
+    return new Date(date+"T00:00:00")
+      .toLocaleDateString(
+        "id-ID",
+        {
+          day:"2-digit",
+          month:"2-digit",
+          year:"numeric"
+        }
+      );
+
+  }catch(e){
+
+    return date;
+
+  }
+
+}
+
+function renderAll(){
+
+  renderHome();
+  renderTree();
+  renderSchedules();
+  renderKas();
+  renderAdmin();
+
+}
+
+/* FIRESTORE REALTIME */
+
+onSnapshot(
+  dataRef,
+  snap=>{
+
+    if(snap.exists()){
+
+      data=normalize(snap.data());
+
+      saveCache();
+
+      online=true;
+
+      setStatus("🟢 Online & Realtime");
+
+      renderAll();
+
+    }else{
+
+      data=normalize(data);
+
+      saveData();
+
+      setStatus("🟢 Online & Realtime");
+
+    }
+
+  },
+  err=>{
+
+    console.error("Firestore:",err);
+
+    online=false;
+
+    setStatus("🔴 Offline — cek Firestore Rules");
+
+    renderAll();
+
+  }
+);
+
+/* INITIAL */
+
+renderAll();
+
+</script>
+
+</body>
+</html>
